@@ -13,10 +13,25 @@ const uploadOnCloudinary = async (localFilePath) =>{
     try{
         if (!localFilePath) return null;
         //upload the file on cloudinary
-        cloudinary.uploader.upload(localFilePath,{
+        const response =await cloudinary.uploader.upload(localFilePath,{
             resource_type: "auto",
         })
         //file has been uploaced successfull 
-        console.log("file uploaded successfully on cloudinary");
+        console.log("file uploaded successfully on cloudinary", 
+        response.url);
+        
+        return response;
+        
+
+
+
+    }
+    catch(error){
+        fs.unlinkSync(localFilePath); //remove the 
+        //locally saved temparary file as the upload 
+        //operation got failed
+
+        return null;
+
     }
 }
