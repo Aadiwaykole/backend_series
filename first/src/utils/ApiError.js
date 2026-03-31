@@ -13,7 +13,7 @@ class AipError extends Error{
         this.errors = this.error;
 
 
-        if(statck){
+        if(stack){
             this.stack = stack;
         }else{
             Error.captureStackTrace(this, this.constructor);
